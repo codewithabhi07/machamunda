@@ -186,16 +186,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Share Invitation ---
     const shareBtn = document.getElementById('shareBtn');
     shareBtn.addEventListener('click', () => {
+        const shareText = `*माँ चामुंडा इलेक्ट्रॉनिक्स & मोबाइल - भव्य शुभारंभ* 🎉\n\nतुम्हाला माँ चामुंडा इलेक्ट्रॉनिक्स & मोबाइलच्या भव्य शुभारंभाचे आग्रहाचे निमंत्रण!\n\n📅 *दिनांक:* ४ एप्रिल २०२६\n📍 *स्थळ:* पारोळा\n\nआपल्या उपस्थितीची आम्ही वाट पाहत आहोत! 🙏\n\n🔗 *लिंक:* ${window.location.href}`;
+
         const shareData = {
             title: 'माँ चामुंडा इलेक्ट्रॉनिक्स & मोबाइल - भव्य शुभारंभ',
-            text: 'तुम्हाला माँ चामुंडा इलेक्ट्रॉनिक्स & मोबाइलच्या भव्य शुभारंभाचे आग्रहाचे निमंत्रण! ४ एप्रिल २०२६ रोजी पारोळा येथे नक्की या.',
-            url: window.location.href
+            text: shareText
         };
 
         if (navigator.share) {
             navigator.share(shareData).catch(console.error);
         } else {
-            const waUrl = `https://wa.me/?text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
+            const waUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
             window.open(waUrl, '_blank');
         }
     });

@@ -419,8 +419,8 @@ body {
 .back-to-top.active { opacity: 1; visibility: visible; }
 
 /* --- Modal --- */
-.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
-.modal-content { background: white; padding: 40px; border-radius: 30px; max-width: 500px; width: 100%; position: relative; animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+.modal-content { background: white; padding: 40px; border-radius: 30px; max-width: 500px; width: 100%; position: relative; animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); margin: auto; }
 @keyframes modalPop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 .close-modal { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #64748b; }
 
@@ -438,29 +438,84 @@ body {
 .mb-4 { margin-bottom: 2rem; }
 
 /* --- Mobile Adjustments --- */
-@media (max-width: 768px) {
-    .owner-card, .finance-grid { flex-direction: column; text-align: center; padding: 30px; }
-    .finance-logos { grid-template-columns: 1fr; }
-    .whatsapp-bubble { bottom: 20px; left: 20px; width: 50px; height: 50px; font-size: 1.5rem; }
-    .back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px; }
+@media (max-width: 1200px) {
+    .container { max-width: 95%; }
+    .main-title { font-size: 3rem; }
 }
 
-/* --- Mobile Menu --- */
 @media (max-width: 992px) {
+    .section { padding: 60px 0; }
     .hero-grid, .contact-grid { grid-template-columns: 1fr; text-align: center; }
-    .hero-actions, .countdown-grid { justify-content: center; }
+    .hero-actions { justify-content: center; flex-wrap: wrap; }
+    .countdown-grid { justify-content: center; }
     .main-title { font-size: 2.8rem; }
+    .image-stack { margin-top: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .finance-grid { grid-template-columns: 1fr; gap: 30px; }
 }
 
 @media (max-width: 768px) {
-    .nav-links { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: white; flex-direction: column; justify-content: center; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1001; padding: 40px; }
+    .navbar { height: 70px; }
+    .nav-links { 
+        position: fixed; 
+        top: 0; 
+        right: -100%; 
+        width: 80%; 
+        height: 100vh; 
+        background: white; 
+        flex-direction: column; 
+        justify-content: center; 
+        transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+        z-index: 1001; 
+        padding: 40px; 
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    }
     .nav-links.active { right: 0; }
     .nav-toggle { display: block; z-index: 1002; }
     .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
     .nav-toggle.active span:nth-child(2) { opacity: 0; }
     .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
-    .mobile-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; opacity: 0; visibility: hidden; transition: 0.3s; }
+    
+    .mobile-overlay { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        background: rgba(0,0,0,0.5); 
+        z-index: 1000; 
+        opacity: 0; 
+        visibility: hidden; 
+        transition: 0.3s; 
+    }
     .mobile-overlay.active { opacity: 1; visibility: visible; }
+
+    .main-title { font-size: 2.2rem; line-height: 1.3; }
+    .hero { padding: 60px 0; }
+    
+    .cd-item { min-width: 70px; padding: 10px; }
+    .cd-item span { font-size: 1.5rem; }
+
+    .owner-card { flex-direction: column; text-align: center; padding: 20px; }
+    .owner-info { margin-top: 20px; }
+    
+    .services-grid { grid-template-columns: 1fr; }
+    .finance-logos { grid-template-columns: 1fr; }
+    
+    .whatsapp-bubble { bottom: 20px; left: 20px; width: 55px; height: 55px; font-size: 1.8rem; }
+    .back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px; }
+    
+    .section-title { font-size: 2rem; }
+}
+
+@media (max-width: 480px) {
+    .main-title { font-size: 1.8rem; }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+    .countdown-grid { gap: 10px; }
+    .cd-item { min-width: 60px; }
+    .p-img-box { height: 280px; }
+    .modal-content { padding: 25px; border-radius: 20px; }
+    .guest-header { flex-direction: column; text-align: center; }
+    .guest-icon { margin-bottom: 10px; }
 }
 
 /* Reveal Animations */

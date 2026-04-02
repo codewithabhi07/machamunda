@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const now = new Date().getTime();
         const difference = targetDate - now;
 
+        if (difference < 0) {
+            document.getElementById('countdown').innerHTML = "<h4>सुरू झाले आहे!</h4>";
+            return;
+        }
+
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
         const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
@@ -26,10 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
         navToggle.classList.toggle('active');
         navLinks.classList.toggle('active');
         mobileOverlay.classList.toggle('active');
+        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'initial';
     };
 
     navToggle.addEventListener('click', toggleMenu);
     mobileOverlay.addEventListener('click', toggleMenu);
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) toggleMenu();
+        });
+    });
 
     // --- Like Button & Confetti ---
     const likeBtn = document.getElementById('likeBtn');
@@ -38,7 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let isLiked = localStorage.getItem('mceIsLiked') === 'true';
 
     likeCount.textContent = count;
-    if (isLiked) likeBtn.classList.add('liked');
+    if (isLiked) {
+        likeBtn.classList.add('liked');
+    }
 
     likeBtn.addEventListener('click', () => {
         if (!isLiked) {
@@ -60,9 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('active');
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
         });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1 });
     revealElements.forEach(el => observer.observe(el));
 
     // --- Confetti Effect ---
@@ -81,23 +97,30 @@ document.addEventListener('DOMContentLoaded', () => {
         constructor(x, y) {
             this.x = x;
             this.y = y;
-            this.size = Math.random() * 8 + 4;
-            this.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
-            this.vx = (Math.random() - 0.5) * 10;
-            this.vy = (Math.random() - 0.5) * 10 - 5;
-            this.gravity = 0.2;
+            this.size = Math.random() * 6 + 4;
+            this.color = `hsl(${Math.random() * 360}, 80%, 60%)`;
+            this.vx = (Math.random() - 0.5) * 12;
+            this.vy = (Math.random() - 0.5) * 12 - 8;
+            this.gravity = 0.25;
             this.opacity = 1;
+            this.rotation = Math.random() * 360;
+            this.rotationSpeed = (Math.random() - 0.5) * 10;
         }
         update() {
             this.vy += this.gravity;
             this.x += this.vx;
             this.y += this.vy;
-            this.opacity -= 0.01;
+            this.opacity -= 0.015;
+            this.rotation += this.rotationSpeed;
         }
         draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation * Math.PI / 180);
             ctx.globalAlpha = this.opacity;
             ctx.fillStyle = this.color;
-            ctx.fillRect(this.x, this.y, this.size, this.size);
+            ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+            ctx.restore();
         }
     }
 
@@ -105,13 +128,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const rect = element.getBoundingClientRect();
         const x = rect.left + rect.width / 2;
         const y = rect.top + rect.height / 2;
-        for (let i = 0; i < 30; i++) particles.push(new Particle(x, y));
+        for (let i = 0; i < 40; i++) {
+            particles.push(new Particle(x, y));
+        }
     }
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         particles = particles.filter(p => p.opacity > 0);
-        particles.forEach(p => { p.update(); p.draw(); });
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
         requestAnimationFrame(animate);
     }
     animate();

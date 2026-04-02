@@ -183,46 +183,70 @@ document.addEventListener('DOMContentLoaded', () => {
     visitorCount.textContent = visits;
     localStorage.setItem('mceVisits', visits);
 
+    // --- Share Invitation ---
+    const shareBtn = document.getElementById('shareBtn');
+    shareBtn.addEventListener('click', () => {
+        const shareData = {
+            title: 'माँ चामुंडा इलेक्ट्रॉनिक्स & मोबाइल - भव्य शुभारंभ',
+            text: 'तुम्हाला माँ चामुंडा इलेक्ट्रॉनिक्स & मोबाइलच्या भव्य शुभारंभाचे आग्रहाचे निमंत्रण! ४ एप्रिल २०२६ रोजी पारोळा येथे नक्की या.',
+            url: window.location.href
+        };
+
+        if (navigator.share) {
+            navigator.share(shareData).catch(console.error);
+        } else {
+            const waUrl = `https://wa.me/?text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
+            window.open(waUrl, '_blank');
+        }
+    });
+
     // --- Product Pop-up ---
     window.showProduct = (category) => {
         const modal = document.getElementById('productModal');
         const modalBody = document.getElementById('modalBody');
         
         let content = '';
+        let waMessage = '';
+
         if (category === 'Smartphones') {
+            waMessage = 'नमस्कार, मला लेटेस्ट स्मार्टफोन्सबद्दल माहिती हवी आहे.';
             content = `<h2>📱 लेटेस्ट स्मार्टफोन्स</h2>
                 <ul style="margin-top:20px; text-align:left; list-style:none;">
                     <li>✅ Vivo V30 Series (५G)</li>
                     <li>✅ Samsung Galaxy A55 (५G)</li>
                     <li>✅ Oppo Reno 11 Pro</li>
-                    <li>✅ MI 14 Ultra</li>
-                </ul>
-                <p style="margin-top:20px;"><strong>सर्व मोबाईल्सवर ०% व्याजावर हप्ते उपलब्ध!</strong></p>`;
+                </ul>`;
         } else if (category === 'Smart TV') {
+            waMessage = 'नमस्कार, मला स्मार्ट टीव्हीच्या ऑफर्सबद्दल माहिती हवी आहे.';
             content = `<h2>📺 स्मार्ट टीव्ही</h2>
                 <ul style="margin-top:20px; text-align:left; list-style:none;">
                     <li>✅ Sony Bravia 4K Ultra HD</li>
                     <li>✅ LG NanoCell Series</li>
                     <li>✅ Samsung QLED TV</li>
-                </ul>
-                <p style="margin-top:20px;"><strong>जुन्या टीव्हीवर आकर्षक एक्सचेंज ऑफर!</strong></p>`;
+                </ul>`;
         } else if (category === 'Home Appliances') {
+            waMessage = 'नमस्कार, मला फ्रिज आणि वॉशिंग मशीनबद्दल माहिती हवी आहे.';
             content = `<h2>❄️ होम अप्लायन्सेस</h2>
                 <ul style="margin-top:20px; text-align:left; list-style:none;">
                     <li>✅ Whirlpool 3 Door Refrigerator</li>
                     <li>✅ LG Direct Drive Washing Machine</li>
-                    <li>✅ Haier Double Door Fridge</li>
                 </ul>`;
         } else if (category === 'Coolers') {
+            waMessage = 'नमस्कार, मला एअर कूलर्सबद्दल माहिती हवी आहे.';
             content = `<h2>🌬️ एअर कूलर्स</h2>
                 <ul style="margin-top:20px; text-align:left; list-style:none;">
                     <li>✅ Symphony Diet 3D</li>
                     <li>✅ Bajaj Torque Personal Cooler</li>
-                    <li>✅ Kenstar Desert Cooler</li>
                 </ul>`;
         }
 
-        modalBody.innerHTML = content;
+        modalBody.innerHTML = content + `
+            <div style="margin-top:30px;">
+                <p><strong>सर्व उत्पादनांवर सुलभ हप्ते (EMI) उपलब्ध!</strong></p>
+                <a href="https://wa.me/919699627500?text=${encodeURIComponent(waMessage)}" target="_blank" class="btn btn-whatsapp w-100" style="margin-top:15px; text-decoration:none; justify-content:center;">
+                    <i class="fab fa-whatsapp"></i> व्हॉट्सॲपवर चौकशी करा
+                </a>
+            </div>`;
         modal.style.display = 'flex';
     };
 

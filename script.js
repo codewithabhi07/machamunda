@@ -143,4 +143,91 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animate);
     }
     animate();
+
+    // --- Scroll progress & Navbar ---
+    const scrollProgress = document.getElementById('scrollProgress');
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', () => {
+        // Progress Bar
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        scrollProgress.style.width = scrolled + "%";
+
+        // Navbar State
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // --- Back to Top ---
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('active');
+        } else {
+            backToTop.classList.remove('active');
+        }
+    });
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // --- Visitor Counter ---
+    const visitorCount = document.getElementById('visitorCount');
+    let visits = parseInt(localStorage.getItem('mceVisits')) || 450;
+    visits += Math.floor(Math.random() * 3) + 1;
+    visitorCount.textContent = visits;
+    localStorage.setItem('mceVisits', visits);
+
+    // --- Product Pop-up ---
+    window.showProduct = (category) => {
+        const modal = document.getElementById('productModal');
+        const modalBody = document.getElementById('modalBody');
+        
+        let content = '';
+        if (category === 'Smartphones') {
+            content = `<h2>📱 लेटेस्ट स्मार्टफोन्स</h2>
+                <ul style="margin-top:20px; text-align:left; list-style:none;">
+                    <li>✅ Vivo V30 Series (५G)</li>
+                    <li>✅ Samsung Galaxy A55 (५G)</li>
+                    <li>✅ Oppo Reno 11 Pro</li>
+                    <li>✅ MI 14 Ultra</li>
+                </ul>
+                <p style="margin-top:20px;"><strong>सर्व मोबाईल्सवर ०% व्याजावर हप्ते उपलब्ध!</strong></p>`;
+        } else if (category === 'Smart TV') {
+            content = `<h2>📺 स्मार्ट टीव्ही</h2>
+                <ul style="margin-top:20px; text-align:left; list-style:none;">
+                    <li>✅ Sony Bravia 4K Ultra HD</li>
+                    <li>✅ LG NanoCell Series</li>
+                    <li>✅ Samsung QLED TV</li>
+                </ul>
+                <p style="margin-top:20px;"><strong>जुन्या टीव्हीवर आकर्षक एक्सचेंज ऑफर!</strong></p>`;
+        } else if (category === 'Home Appliances') {
+            content = `<h2>❄️ होम अप्लायन्सेस</h2>
+                <ul style="margin-top:20px; text-align:left; list-style:none;">
+                    <li>✅ Whirlpool 3 Door Refrigerator</li>
+                    <li>✅ LG Direct Drive Washing Machine</li>
+                    <li>✅ Haier Double Door Fridge</li>
+                </ul>`;
+        } else if (category === 'Coolers') {
+            content = `<h2>🌬️ एअर कूलर्स</h2>
+                <ul style="margin-top:20px; text-align:left; list-style:none;">
+                    <li>✅ Symphony Diet 3D</li>
+                    <li>✅ Bajaj Torque Personal Cooler</li>
+                    <li>✅ Kenstar Desert Cooler</li>
+                </ul>`;
+        }
+
+        modalBody.innerHTML = content;
+        modal.style.display = 'flex';
+    };
+
+    const modal = document.getElementById('productModal');
+    const closeBtn = document.querySelector('.close-modal');
+    closeBtn.onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
 });

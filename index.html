@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मा चामुंडा इलेक्ट्रॉनिक्स & मोबाइल - भव्य शुभारंभ</title>
+    <meta name="description" content="मा चामुंडा इलेक्ट्रॉनिक्स & मोबाइल, पारोळा - भव्य शुभारंभ शनिवार, ०४ एप्रिल २०२६.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Noto+Sans+Marathi:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-bolt logo-sparkle"></i> मा चामुंडा
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="like-btn" id="likeBtn"><i class="fas fa-heart"></i> <span id="likeCount">124</span></button></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content reveal-left">
+                <div class="opening-badge pulse">🎉 भव्य शुभारंभ</div>
+                <h2 class="sub-title">“आपल्या पारोळा शहरात प्रथमच आपल्या सेवेत…”</h2>
+                <h1 class="main-title">मा चामुंडा <span>इलेक्ट्रॉनिक्स & मोबाइल</span></h1>
+                
+                <!-- Countdown Timer -->
+                <div class="countdown-container floating">
+                    <h4>शुभारंभासाठी उरले आहेत:</h4>
+                    <div id="countdown" class="countdown-grid">
+                        <div class="cd-item"><span id="days">00</span><p>दिवस</p></div>
+                        <div class="cd-item"><span id="hours">00</span><p>तास</p></div>
+                        <div class="cd-item"><span id="minutes">00</span><p>मिनिटे</p></div>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="tel:9699627500" class="btn btn-primary shadow-pop"><i class="fas fa-phone-alt"></i> कॉल करा</a>
+                    <a href="https://wa.me/919699627500" class="btn btn-whatsapp shadow-pop"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+            <div class="hero-image reveal-right">
+                <div class="image-stack">
+                    <img src="1000747556.jpg" alt="Invitation" class="main-invitation">
+                    <div class="float-badge">४ एप्रिल २०२६</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Guest Section -->
+    <section class="guests section bg-light">
+        <div class="container">
+            <div class="guest-card-premium reveal-up">
+                <div class="guest-details">
+                    <div class="guest-header">
+                        <div class="guest-icon"><i class="fas fa-star"></i></div>
+                        <h3>प्रमुख उपस्थिती: श्री. सचिनदादा कुमावत</h3>
+                    </div>
+                    <p class="guest-highlight">Bigg Boss Contestant 2026</p>
+                    <p>प्रसिद्ध कलाकार व गायक यांच्या उपस्थितीत भव्य शुभारंभ संपन्न होणार आहे. आपण सर्वांनी या सोहळ्यास उपस्थित राहून शोभा वाढवावी.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="products" class="products section">
+        <div class="container">
+            <div class="centered reveal-up">
+                <h2 class="section-title">आमची <span>उत्पादने</span></h2>
+                <p>सर्वोत्तम ब्रँड्स आणि गॅरंटीड क्वालिटी</p>
+            </div>
+            
+            <div class="product-gallery">
+                <!-- Smartphones -->
+                <div class="p-item reveal-up">
+                    <div class="p-img-box">
+                        <img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=800&auto=format&fit=crop" alt="Smartphones">
+                        <div class="p-overlay">
+                            <h3>स्मार्टफोन्स</h3>
+                            <p>Samsung, Vivo, Oppo, MI</p>
+                        </div>
+                    </div>
+                    <div class="p-label">लेटेस्ट ५G मोबाईल्स</div>
+                </div>
+
+                <!-- Smart TV -->
+                <div class="p-item reveal-up" style="transition-delay: 0.1s;">
+                    <div class="p-img-box">
+                        <img src="https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=800&auto=format&fit=crop" alt="Smart TV">
+                        <div class="p-overlay">
+                            <h3>स्मार्ट टीव्ही</h3>
+                            <p>Sony, LG, Samsung Smart LED</p>
+                        </div>
+                    </div>
+                    <div class="p-label">अल्ट्रा HD सिनेमा अनुभव</div>
+                </div>
+
+                <!-- Refrigerators -->
+                <div class="p-item reveal-up" style="transition-delay: 0.2s;">
+                    <div class="p-img-box">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop" alt="Fridge">
+                        <div class="p-overlay">
+                            <h3>फ्रिज & वॉशिंग मशीन</h3>
+                            <p>Whirlpool, LG, Haier</p>
+                        </div>
+                    </div>
+                    <div class="p-label">एनर्जी सेविंग अप्लायन्सेस</div>
+                </div>
+
+                <!-- Air Coolers -->
+                <div class="p-item reveal-up" style="transition-delay: 0.3s;">
+                    <div class="p-img-box">
+                        <img src="https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?q=80&w=800&auto=format&fit=crop" alt="Cooler">
+                        <div class="p-overlay">
+                            <h3>एअर कूलर्स</h3>
+                            <p>Symphony, Bajaj, Kenstar</p>
+                        </div>
+                    </div>
+                    <div class="p-label">उन्हाळ्यासाठी सर्वोत्तम थंडावा</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift Banner -->
+    <div class="gift-section section bg-dark">
+        <div class="container text-center">
+            <div class="gift-box reveal-up">
+                <i class="fas fa-gift gift-icon bounce"></i>
+                <h2>धमाका ऑफर!</h2>
+                <h3>₹१०,००० च्या खरेदीवर खात्रीशीर <span>आकर्षक भेटवस्तू!</span></h3>
+                <p>पहिल्या ३ दिवसांच्या खरेदीवर लागू.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Venue & Footer -->
+    <section id="contact" class="contact section">
+        <div class="container contact-grid">
+            <div class="venue-info reveal-left">
+                <h2 class="section-title">📍 स्थळ व संपर्क</h2>
+                <div class="info-card">
+                    <p class="address">मेन भाजी मार्केट, नगरपालिकेजवळ, पारोळा, जि. जळगाव</p>
+                    <div class="phone-links">
+                        <a href="tel:9699627500"><i class="fas fa-phone"></i> ९६९९६२७५००</a>
+                        <a href="tel:8208463300"><i class="fas fa-phone"></i> ८२०८४६३३००</a>
+                    </div>
+                    <div class="organizer">
+                        <p>आयोजक: <strong>श्री. कैलास रमेशराव बडगुजर</strong></p>
+                        <p>(मा चामुंडा मोबाइल मित्र परिवार)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="map-box reveal-right">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14902.164893816657!2d75.11652395!3d20.8903527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd96348888b56f1%3A0x33b1e7f1e786b4f!2sParola%2C%20Maharashtra%20425111!5e0!3m2!1sen!2sin!4v1711985000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0; border-radius: 20px;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 मा चामुंडा इलेक्ट्रॉनिक्स & मोबाइल - पारोळा</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
